@@ -1,9 +1,4 @@
-Skip files modified within last 24 hours (optional setting).
+# clear recycle bin 
 
-Skip files currently in use (catch permission errors and log instead of deleting).
-
-Only delete contents of folders, not the folder itself (safer).
-
-Provide a “dry run” mode that only logs what it would delete (highly recommended for first few runs).
-
+# check how much RAM cleared 
 
