@@ -11,7 +11,7 @@ folderTargets = {
     "Temp" : "%TEMP%", 
     "SystemTemp": r"C:\Windows\Temp",
     "LocalAppTemp": "%LOCALAPPDATA%\Temp",
-    "BrowserCaches": r"%LOCALAPPDATA%\Google\Chrome\User",
+    "BrowserCaches": r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache",
     "RecycleBin": ""
 }
 
