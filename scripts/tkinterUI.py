@@ -5,7 +5,7 @@ import system_cleaner
 cleaner = system_cleaner.SystemCleaner()
 
 root = Tk()
-root.geometry("800x800")
+root.geometry("750x800")
 root.resizable(False, False)
 
 style = ttk.Style()
