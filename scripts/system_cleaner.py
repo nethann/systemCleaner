@@ -54,7 +54,7 @@ class SystemCleaner:
 
             else: 
                 full_path = os.path.expandvars(path)
-                print(f"\nDeleting contents of {name} ({full_path}):")
+                self.tempFile.write(f"\nDeleting contents of {name} ({full_path}):")
 
                 try: 
                     for item in os.listdir(full_path): 
@@ -62,16 +62,18 @@ class SystemCleaner:
                         try: 
                             if os.path.isfile(item_path): 
                                 os.remove(item_path)
-                                print(f"Removed file: {item_path}")
+                                self.tempFile.write(f"Removed file: {item_path}")
                             elif os.path.isdir(item_path): 
                                 shutil.rmtree(item_path)
-                                print(f"Removed directory: {item_path}")
+                                self.tempFile.write(f"Removed directory: {item_path}")
                         except PermissionError:
-                            print(f"Skipped locked items: {item_path}")
+                            self.tempFile.write(f"Skipped locked items: {item_path}")
                 except PermissionError:
-                    print(f"Skipped locked folder: {full_path}")
+                    self.tempFile.write(f"Skipped locked folder: {full_path}")
                 except FileNotFoundError:
-                    print(f"Folder not found: {full_path}")
+                    self.tempFile.write(f"Folder not found: {full_path}")
+
+        self.tempFile.close()
 
     def clean_recycle(self): 
         SHERB_NOCONFIRMATION = 0x00000001
@@ -93,7 +95,7 @@ class SystemCleaner:
 
 
 cleaner = SystemCleaner() 
-cleaner.list_temp(folderTargets)
-# cleaner.delete_temp(folderTargets)
+# cleaner.list_temp(folderTargets)
+cleaner.delete_temp(folderTargets)
 # cleaner.clean_recycle()
 
