@@ -7,9 +7,9 @@
 4. BrowserCaches
 
 
-## Temp Folder Listing 
+## Temp folder listing
 Iterates & loops all the files in these directories
 
 
-## Delete Temp Folders
+## Delete temp folders 
 Iterates & deletes all the files in these directories
