@@ -8,6 +8,8 @@ root = Tk()
 root.geometry("750x800")
 root.resizable(False, False)
 
+root.iconbitmap("file_icon.ico")
+
 style = ttk.Style()
 style.configure("Big.TButton", font=("Arial", 13), padding=10)
 
