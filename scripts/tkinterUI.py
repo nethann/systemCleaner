@@ -21,13 +21,15 @@ button_width = 30
 log_area = scrolledtext.ScrolledText(frm, width=80, height=20, font=("Arial", 12), state='disabled', bg='white')
 log_area.pack(pady=10)
 
-def log(messages):
+def log(messages, clear=True):
     log_area.configure(state='normal')
-    log_area.delete('1.0', END)  
+    if clear:
+        log_area.delete('1.0', END)
     for message in messages:
         log_area.insert(END, message + "\n")
     log_area.see(END)
     log_area.configure(state='disabled')
+
 
 def list_temp_files():
     logs = cleaner.list_temp_files()

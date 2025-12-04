@@ -57,8 +57,17 @@ class SystemCleaner:
         SHERB_NOSOUND        = 0x00000004
         flags = SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND
 
-        result = self.shell32.SHEmptyRecycleBinW(None, None, flags)
-        if result != 0:
-            return [f"Failed to empty Recycle Bin. Error {hex(result)}"]
-        else:
-            return ["Emptied Recycle Bin!"]
+        try:
+            result = self.shell32.SHEmptyRecycleBinW(None, None, flags)
+            result_unsigned = ctypes.c_uint(result).value
+
+            if result_unsigned == 0:
+                return ["Emptied Recycle Bin!"]
+            elif result_unsigned == 0x00000001:
+                return ["Recycle Bin is already empty."]
+            else:
+                return [f"Failed to empty Recycle Bin. Windows returned error: {hex(result_unsigned)}"]
+
+        except Exception as e:
+            return [f"Failed to empty Recycle Bin due to unexpected error: {e}"]
+
