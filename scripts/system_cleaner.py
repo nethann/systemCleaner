@@ -16,8 +16,9 @@ class SystemCleaner:
         self.shell32 = ctypes.windll.shell32  
 
         #files 
+        self.tempfileList = open("logs/tempfileList.txt", "w")
         self.tempFile = open("logs/tempFileLog.txt", "w")
-        self.recycleBinFile = open("logs/recycleBinLog.txt")
+        self.recycleBinFile = open("logs/recycleBinLog.txt", "w")
 
 
     #LISTING FOLDERS
@@ -28,21 +29,19 @@ class SystemCleaner:
 
             else: 
                 full_path = os.path.expandvars(path)
-                self.tempFile.write(f"\nContents of {name} ({full_path}):")
+                self.tempfileList.write(f"\nContents of {name} ({full_path}):")
 
                 try: 
                     for item in os.listdir(full_path): 
                         item_path = os.path.join(full_path, item) 
-                        self.tempFile.write(f" - {item}")
+                        self.tempfileList.write(f" - {item}")
                 except PermissionError: 
-                    # print(f" Skipped locked folder: {full_path}")
-                    self.tempFile.write(f" Skipped locked folder: {full_path}")
+                    self.tempfileList.write(f" Skipped locked folder: {full_path}")
 
                 except FileNotFoundError: 
-                    # print(f" Folder not found: {full_path}")
-                    self.tempFile.write(f" Folder not found: {full_path}")
+                    self.tempfileList.write(f" Folder not found: {full_path}")
 
-        self.tempFile.close()
+        self.tempfileList.close()
         
 
     #DELETING TEMP 
@@ -89,9 +88,9 @@ class SystemCleaner:
         )
 
         if result != 0: 
-            print(f"Failed to empty Bin. Error {hex(result)}")
+            self.recycleBinFile.write(f"Failed to empty Bin. Error {hex(result)}")
         else: 
-            print("Emptied Bin!")
+            self.recycleBinFile.write("Emptied Bin!")
 
 
 cleaner = SystemCleaner() 
