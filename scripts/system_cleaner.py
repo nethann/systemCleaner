@@ -2,6 +2,7 @@
 import os 
 import ctypes 
 import shutil
+import psutil
 
 #Clearing recycle bin, Temp Folders, Browser Cache
 folderTargets = {
@@ -63,7 +64,7 @@ class SystemCleaner:
                 except FileNotFoundError:
                     print(f"Folder not found: {full_path}")
 
-    def clean_reccycle(self): 
+    def clean_recyclew(self): 
         SHERB_NOCONFIRMATION = 0x00000001
         SHERB_NOPROGRESSUI   = 0x00000002
         SHERB_NOSOUND        = 0x00000004
@@ -81,7 +82,8 @@ class SystemCleaner:
         else: 
             print("Emptied Bin!")
 
+
 cleaner = SystemCleaner() 
 # cleaner.list_temp(folderTargets)
 # cleaner.delete_temp(folderTargets)
-# cleaner.clean_reccycle()
+# cleaner.clean_recyclew()
