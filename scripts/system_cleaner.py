@@ -1,23 +1,19 @@
-import psutil #checks disk usage before/after cleanup
-import os #nvaigate folders
-import tempfile #find Windows temp directory
-from ctypes import * #empty Recycle Bin 
-import pathlib  #clean,safe path handling
+
+import os 
+import ctypes 
 import shutil
 
 #Clearing recycle bin, Temp Folders, Browser Cache
-
 folderTargets = {
     "Temp" : "%TEMP%", 
     "SystemTemp": r"C:\Windows\Temp",
     "LocalAppTemp": "%LOCALAPPDATA%\Temp",
     "BrowserCaches": r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache",
-    "RecycleBin": ""
 }
 
 class SystemCleaner: 
     def __init__(self):
-        pass
+        self.shell32 = ctypes.windll.shell32  
 
     #LISTING FOLDERS
     def list_temp(self, folder_dict): 
@@ -67,6 +63,25 @@ class SystemCleaner:
                 except FileNotFoundError:
                     print(f"Folder not found: {full_path}")
 
+    def clean_reccycle(self): 
+        SHERB_NOCONFIRMATION = 0x00000001
+        SHERB_NOPROGRESSUI   = 0x00000002
+        SHERB_NOSOUND        = 0x00000004
+
+        flags = SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND
+
+        result = self.shell32.SHEmptyRecycleBinW(
+            None,
+            None,
+            flags
+        )
+
+        if result != 0: 
+            print(f"Failed to empty Bin. Error {hex(result)}")
+        else: 
+            print("Emptied Bin!")
+
 cleaner = SystemCleaner() 
 # cleaner.list_temp(folderTargets)
-cleaner.delete_temp(folderTargets)
+# cleaner.delete_temp(folderTargets)
+# cleaner.clean_reccycle()
