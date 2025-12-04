@@ -39,6 +39,7 @@ class SystemCleaner:
                 except FileNotFoundError: 
                     print(f" Folder not found: {full_path}")
 
+    #DELETING TEMP 
     def delete_temp(self, folder_dict): 
         for name, path in folder_dict.items(): 
 
