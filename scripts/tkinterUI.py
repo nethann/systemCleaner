@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk, scrolledtext
 import system_cleaner
+import sys
+import os 
 
 cleaner = system_cleaner.SystemCleaner()
 
@@ -8,7 +10,13 @@ root = Tk()
 root.geometry("750x800")
 root.resizable(False, False)
 
-root.iconbitmap("file_icon.ico")
+if getattr(sys, 'frozen', False):  
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(__file__)
+
+icon_path = os.path.join(base_path, "file_icon.ico")
+root.iconbitmap(icon_path)
 
 style = ttk.Style()
 style.configure("Big.TButton", font=("Arial", 13), padding=10)
