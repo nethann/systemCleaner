@@ -7,7 +7,7 @@ folderTargets = {
     "Temp": "%TEMP%",
     "SystemTemp": r"C:\Windows\Temp",
     "LocalAppTemp": "%LOCALAPPDATA%\Temp",
-    "BrowserCaches": r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache",
+    # "BrowserCaches": r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache",
 }
 
 class SystemCleaner:
