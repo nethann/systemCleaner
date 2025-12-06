@@ -5,7 +5,7 @@ a = Analysis(
     ['tkinterUI.py'],
     pathex=[],
     binaries=[],
-    datas=[('file_icon.ico', '.')],
+    datas=[('bug_icon.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -35,5 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['file_icon.ico'],
+    icon=['bug_icon.ico'],
 )

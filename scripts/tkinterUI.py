@@ -15,7 +15,7 @@ if getattr(sys, 'frozen', False):
 else:
     base_path = os.path.dirname(__file__)
 
-icon_path = os.path.join(base_path, "file_icon.ico")
+icon_path = os.path.join(base_path, "bug_icon.ico")
 root.iconbitmap(icon_path)
 
 style = ttk.Style()
