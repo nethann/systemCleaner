@@ -4,7 +4,6 @@
 1. Temp
 2. SystemTemp
 3. LocalAppTemp
-4. BrowserCaches
 
 ## Listing Temp Files
 Iterates through all files and directories in the above folders and logs their contents to a scrollable UI area, handling locked or missing folders gracefully.
