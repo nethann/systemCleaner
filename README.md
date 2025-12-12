@@ -22,5 +22,4 @@ Empties the Windows Recycle Bin using a system call, suppressing confirmation di
   - Cleaning the Recycle Bin
   - Quitting the application
 - Scrollable log area to display operations in real-time.
-- Customizable icon support for the application window.
 - Packaged with PyInstaller for one-file standalone execution.
